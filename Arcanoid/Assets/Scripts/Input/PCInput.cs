@@ -22,5 +22,4 @@ namespace Arcanoid.Inputs
             _inputViewModel.SetAxis(_axis);
         }
     }
-
 }

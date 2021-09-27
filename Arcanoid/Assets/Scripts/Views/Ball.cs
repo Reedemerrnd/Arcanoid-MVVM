@@ -6,23 +6,29 @@ namespace Arcanoid.Views
     public sealed class Ball : MonoBehaviour
     {
         private Rigidbody2D _rigidbody;
-        private bool _isLanched;
+        private bool _isLaunched;
+        private IMovementViewModel _movement;
 
-        public void Construct(IInputViewModel input)
+        public void Construct(IInputViewModel input, IMovementViewModel movementViewModel)
         {
             input.OnLaunch += Launch;
+            _movement = movementViewModel;
         }
+
 
         private void Awake()
         {
             _rigidbody = GetComponent<Rigidbody2D>();
         }
+
+
         private void Launch()
         {
-            if (!_isLanched)
+            if (!_isLaunched)
             {
-                var direction = new Vector3(Random.Range(-1f, 1f), 1f, 0f) * 1000f;
+                var direction = new Vector3(Random.Range(-1f, 1f), 1f, 0f) * _movement.Speed;
                 _rigidbody.AddForce(direction);
+                _isLaunched = true;
             }
         }
     }

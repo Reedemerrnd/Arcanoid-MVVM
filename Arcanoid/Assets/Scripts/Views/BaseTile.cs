@@ -11,22 +11,22 @@ namespace Arcanoid.Views
             _color = GetComponent<SpriteRenderer>().material.color;
         }
 
-        protected virtual void SetScale(float x, float y)
+        public virtual void SetScale(float x, float y)
         {
-            transform.localScale.Set(x, y, 0f);
+            transform.localScale.Set(x, y, 0.1f);
         }
 
-        protected virtual void SetPosition(Vector3 position)
+        public virtual void SetPosition(Vector3 position)
         {
             transform.position = position;
         }
 
-        protected virtual void SetColor(Color color)
+        public virtual void SetColor(Color color)
         {
             _color = color;
         }
 
-        protected virtual void Enable(bool enable)
+        public virtual void Enable(bool enable)
         {
             gameObject.SetActive(enable);
         }
