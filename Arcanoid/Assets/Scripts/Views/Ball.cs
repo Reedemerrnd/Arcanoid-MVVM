@@ -8,15 +8,20 @@ namespace Arcanoid.Views
         private Rigidbody2D _rigidbody;
         private bool _isLanched;
 
+        public void Construct(IInputViewModel input)
+        {
+            input.OnLaunch += Launch;
+        }
+
         private void Awake()
         {
             _rigidbody = GetComponent<Rigidbody2D>();
         }
-        private void Launch(float speed)
+        private void Launch()
         {
             if (!_isLanched)
             {
-                var direction = new Vector3(Random.Range(-1f,1f), 1f, 0f) * speed;
+                var direction = new Vector3(Random.Range(-1f, 1f), 1f, 0f) * 1000f;
                 _rigidbody.AddForce(direction);
             }
         }

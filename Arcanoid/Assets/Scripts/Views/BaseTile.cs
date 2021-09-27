@@ -8,7 +8,7 @@ namespace Arcanoid.Views
 
         private void Awake()
         {
-            _color = GetComponent<MeshRenderer>().material.color;
+            _color = GetComponent<SpriteRenderer>().material.color;
         }
 
         protected virtual void SetScale(float x, float y)
