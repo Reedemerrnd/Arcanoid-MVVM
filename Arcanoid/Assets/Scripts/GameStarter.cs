@@ -14,6 +14,7 @@ namespace Arcanoid
         {
             var settings = Resources.Load<GameSettings>($"Settings/GameSettings");
             var screenBounds = new ScreenBounds(Camera.main);
+  
 
             var board = FindObjectOfType<BoardTile>();
             board.SetScale(0.1f, settings.BoardWidth);
@@ -22,7 +23,20 @@ namespace Arcanoid
 
             var boardSpeedModel = new SpeedModel(settings.BoardSpeed);
             var ballSpeedModel = new SpeedModel(settings.BallSpeed);
-            //var hitModel = new HitModel(new TileState(0, Color.white), new TileState(1, Color.black));
+            var hitModel = new HitModel(settings.States);
+            var hitViewModel = new HitViewModel(hitModel);
+
+            var tileFactory = new TileFactory(hitModel, settings);
+
+            var boardFiller = new BoardBuilder(screenBounds, settings, tileFactory);
+            boardFiller.FillBoard();
+            var bricks = boardFiller.Tiles;
+
+            foreach (var tile in bricks)
+            {
+                tile.Construct(hitViewModel);
+            }
+
 
             var boardSpeedViewModel = new MovementViewModel(boardSpeedModel);
             var ballSpeedViewModel = new MovementViewModel(ballSpeedModel);

@@ -4,7 +4,7 @@ namespace Arcanoid.Views
 {
     public sealed class BoardTile : BaseTile
     {
-        IInputViewModel _input;
+        private IInputViewModel _input;
         private IMovementViewModel _movement;
 
         public void Construct(IInputViewModel inputViewModel, IMovementViewModel movement)

@@ -27,7 +27,7 @@ namespace Arcanoid.Views
             }
         }
 
-        private void SetState(TileState state)
+        public void SetState(TileState state)
         {
             _state = state;
             SetColor(state.Color);
@@ -42,8 +42,6 @@ namespace Arcanoid.Views
         private void OnDisable()
         {
             OnHit = (s) => { };
-            _hitViewModel.OnDisable -= Disable;
-            _hitViewModel.OnStateChanged -= SetState;
         }
     }
 }

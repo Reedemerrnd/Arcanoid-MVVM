@@ -3,5 +3,6 @@
     public interface IHitModel
     {
         public TileState UpdateState(TileState state);
+        public TileState GetRandomState();
     }
 }

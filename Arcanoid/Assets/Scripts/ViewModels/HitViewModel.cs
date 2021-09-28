@@ -27,6 +27,10 @@ namespace Arcanoid.ViewModels
                 OnStateChanged(newState);
             }
         }
-
+        ~HitViewModel()
+        {
+            OnDisable = null;
+            OnStateChanged = null;
+        }
     }
 }

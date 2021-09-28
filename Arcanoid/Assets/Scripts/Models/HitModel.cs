@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using UnityEngine;
 
 namespace Arcanoid.Models
 {
@@ -6,14 +7,17 @@ namespace Arcanoid.Models
     {
         private Dictionary<int, TileState> _states;
 
-        public HitModel(params TileState[] tileStates)
+        public HitModel(params Color[] tileStates)
         {
             _states = new Dictionary<int, TileState>(tileStates.Length);
-            foreach (var state in tileStates)
+            for (int i = 0; i < tileStates.Length; i++)
             {
-                _states.Add(state.HitsToDestroy, state);
+                var state = new TileState(i, tileStates[i]);
+                _states.Add(i, state);
             }
         }
+
+        public TileState GetRandomState() => _states[Random.Range(1, _states.Count-1)];
 
         public TileState UpdateState(TileState state) => state.HitsToDestroy - 1 <= 0 ? _states[0] : _states[state.HitsToDestroy - 1];
     }
