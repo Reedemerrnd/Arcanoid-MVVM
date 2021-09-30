@@ -4,18 +4,21 @@ namespace Arcanoid.Views
 {
     public sealed class BoardTile : BaseTile
     {
+        private Rigidbody2D _rigidbody;
         private IInputViewModel _input;
         private IMovementViewModel _movement;
 
+
         public void Construct(IInputViewModel inputViewModel, IMovementViewModel movement)
         {
+            _rigidbody = GetComponent<Rigidbody2D>();
             _input = inputViewModel;
             _movement = movement;
         }
 
-        private void Update()
+        private void FixedUpdate()
         {
-            transform.Translate(Vector3.right * _input.Axes * _movement.Speed * Time.deltaTime);
+            _rigidbody.velocity = Vector2.right * _input.Axes * _movement.Speed * Time.fixedDeltaTime;
         }
     }
 }

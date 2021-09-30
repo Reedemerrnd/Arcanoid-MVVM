@@ -23,9 +23,10 @@ namespace Arcanoid
         public BrickTile GetTileAt(Vector3 position, Vector3 scale)
         {
             var tile = Object.Instantiate(_gameSettings.TilePrefab, position, Quaternion.identity);
-            tile.transform.localScale = scale;
+            //tile.transform.localScale = scale;
             var bricktile = tile.AddComponent<BrickTile>();
             bricktile.Construct(_hitViewModel);
+            bricktile.SetScale(scale);
             bricktile.SetState(_hitModel.GetRandomState());
             return bricktile;
         }

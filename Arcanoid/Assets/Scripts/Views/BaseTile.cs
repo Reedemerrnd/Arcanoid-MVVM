@@ -11,9 +11,9 @@ namespace Arcanoid.Views
             _renderer = GetComponent<SpriteRenderer>();
         }
 
-        public virtual void SetScale(float x, float y)
+        public virtual void SetScale(Vector3 scale)
         {
-            transform.localScale.Set(x, y, 1f);
+            transform.localScale = scale;
         }
 
         public virtual void SetPosition(Vector3 position)

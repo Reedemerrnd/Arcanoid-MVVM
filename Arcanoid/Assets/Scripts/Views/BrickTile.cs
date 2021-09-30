@@ -20,7 +20,6 @@ namespace Arcanoid.Views
 
         private void OnCollisionEnter2D(Collision2D collision)
         {
-            Debug.Log("Hit");
             if (collision.transform.TryGetComponent<Ball>(out _))
             {
                 OnHit(this);

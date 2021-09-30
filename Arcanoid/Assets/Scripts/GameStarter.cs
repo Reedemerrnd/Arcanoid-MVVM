@@ -9,15 +9,14 @@ namespace Arcanoid
 {
     public class GameStarter : MonoBehaviour
     {
-        // Start is called before the first frame update
         void Start()
         {
             var settings = Resources.Load<GameSettings>($"Settings/GameSettings");
             var screenBounds = new ScreenBounds(Camera.main);
-  
+            
 
             var board = FindObjectOfType<BoardTile>();
-            board.SetScale(0.1f, settings.BoardWidth);
+            board.SetScale(new Vector3(settings.BoardWidth, 0.3f,1f));
             var ball = FindObjectOfType<Ball>();
             var input = FindObjectOfType<PCInput>();
 

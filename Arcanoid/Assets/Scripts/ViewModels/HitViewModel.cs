@@ -17,7 +17,6 @@ namespace Arcanoid.ViewModels
         public void ProcessHit(BrickTile tile)
         {
             var newState = _hitModel.UpdateState(tile.State);
-            Debug.Log($"old: {tile.State.HitsToDestroy} new {newState.HitsToDestroy}");
             tile.SetState(newState);
             if (newState.HitsToDestroy == 0)
             {

@@ -7,14 +7,14 @@ namespace Arcanoid
 {
     class BoardBuilder
     {
-        private readonly ScreenBounds _screenBounds;
+        private readonly IScreenBounds _screenBounds;
         private readonly GameSettings _gameSettings;
         private readonly ITileFactory _tileFactory;
 
         private List<Vector3> _cells;
         private Vector2 _cellSize;
 
-        public BoardBuilder(ScreenBounds screenBounds, GameSettings gameSettings, ITileFactory tileFactory)
+        public BoardBuilder(IScreenBounds screenBounds, GameSettings gameSettings, ITileFactory tileFactory)
         {
             _screenBounds = screenBounds;
             _gameSettings = gameSettings;
@@ -32,12 +32,13 @@ namespace Arcanoid
         }
 
 
+
         private void GetSpawnPoints()
         {
             var topRightYAbs = Mathf.Abs(_screenBounds.TopRight.y);
             var screenMiddleY = (topRightYAbs - Mathf.Abs(_screenBounds.BottomLeft.y)) / 2f;
             _cells = new List<Vector3>(_gameSettings.Collumns * _gameSettings.Rows);
-            _cellSize = new Vector3((_screenBounds.TopRight.x - _screenBounds.BottomLeft.x) / _gameSettings.Collumns, (topRightYAbs - screenMiddleY) / _gameSettings.Rows, 1f);
+            _cellSize = new Vector3((_screenBounds.TopRight.x - _screenBounds.BottomLeft.x) / _gameSettings.Collumns, (_screenBounds.TopRight.y - screenMiddleY) / _gameSettings.Rows, 1f);
             var cellCenter = new Vector3(_screenBounds.BottomLeft.x + (_cellSize.x / 2), screenMiddleY + (_cellSize.y / 2), 0f);
             for (int i = 0; i < _gameSettings.Rows; i++)
             {
@@ -46,6 +47,7 @@ namespace Arcanoid
                     _cells.Add(cellCenter);
                     cellCenter.x += _cellSize.x;
                 }
+                cellCenter.x = _screenBounds.BottomLeft.x + (_cellSize.x / 2);
                 cellCenter.y += _cellSize.y;
             }
         }

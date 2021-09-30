@@ -2,7 +2,7 @@
 
 namespace Arcanoid
 {
-    public class ScreenBounds
+    public class ScreenBounds : IScreenBounds
     {
         private readonly Vector3 _bottomLeft;
         private readonly Vector3 _topRight;
