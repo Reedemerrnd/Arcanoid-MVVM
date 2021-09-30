@@ -6,24 +6,24 @@ namespace Arcanoid.Views
 {
     public sealed class BrickTile : BaseTile
     {
-        public event Action<TileState> OnHit = (s) => { };
+        public event Action<BrickTile> OnHit = (s) => { };
         private TileState _state;
         private IHitViewModel _hitViewModel;
+
+        public TileState State => _state;
 
         public void Construct(IHitViewModel hitViewModel)
         {
             _hitViewModel = hitViewModel;
             OnHit += _hitViewModel.ProcessHit;
-            _hitViewModel.OnDisable += Disable;
-            _hitViewModel.OnStateChanged += SetState;
         }
 
-
-        private void OnTriggerEnter2D(Collider2D collision)
+        private void OnCollisionEnter2D(Collision2D collision)
         {
-            if (collision.TryGetComponent<Ball>(out _))
+            Debug.Log("Hit");
+            if (collision.transform.TryGetComponent<Ball>(out _))
             {
-                OnHit(_state);
+                OnHit(this);
             }
         }
 
@@ -34,7 +34,7 @@ namespace Arcanoid.Views
         }
 
 
-        private void Disable()
+        public void Disable()
         {
             Enable(false);
         }

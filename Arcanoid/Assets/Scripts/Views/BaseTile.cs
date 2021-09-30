@@ -23,7 +23,7 @@ namespace Arcanoid.Views
 
         public virtual void SetColor(Color color)
         {
-            _renderer.material.color = color;
+            _renderer.color = color;
         }
 
         public virtual void Enable(bool enable)

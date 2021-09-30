@@ -1,5 +1,6 @@
 using Arcanoid.Models;
-using System;
+using Arcanoid.Views;
+using UnityEngine;
 
 namespace Arcanoid.ViewModels
 {
@@ -7,30 +8,21 @@ namespace Arcanoid.ViewModels
     {
         private readonly IHitModel _hitModel;
 
-        public event Action<TileState> OnStateChanged = (s) => { };
-        public event Action OnDisable = () => { };
 
         public HitViewModel(IHitModel hitModel)
         {
             _hitModel = hitModel;
         }
 
-        public void ProcessHit(TileState state)
+        public void ProcessHit(BrickTile tile)
         {
-            var newState = _hitModel.UpdateState(state);
+            var newState = _hitModel.UpdateState(tile.State);
+            Debug.Log($"old: {tile.State.HitsToDestroy} new {newState.HitsToDestroy}");
+            tile.SetState(newState);
             if (newState.HitsToDestroy == 0)
             {
-                OnDisable();
+                tile.Disable();
             }
-            else
-            {
-                OnStateChanged(newState);
-            }
-        }
-        ~HitViewModel()
-        {
-            OnDisable = null;
-            OnStateChanged = null;
         }
     }
 }

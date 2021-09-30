@@ -26,16 +26,11 @@ namespace Arcanoid
             var hitModel = new HitModel(settings.States);
             var hitViewModel = new HitViewModel(hitModel);
 
-            var tileFactory = new TileFactory(hitModel, settings);
+            var tileFactory = new TileFactory(hitModel, hitViewModel, settings);
 
             var boardFiller = new BoardBuilder(screenBounds, settings, tileFactory);
             boardFiller.FillBoard();
-            var bricks = boardFiller.Tiles;
 
-            foreach (var tile in bricks)
-            {
-                tile.Construct(hitViewModel);
-            }
 
 
             var boardSpeedViewModel = new MovementViewModel(boardSpeedModel);

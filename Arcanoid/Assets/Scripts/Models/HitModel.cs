@@ -17,8 +17,8 @@ namespace Arcanoid.Models
             }
         }
 
-        public TileState GetRandomState() => _states[Random.Range(1, _states.Count-1)];
+        public TileState GetRandomState() => _states[Random.Range(1, _states.Count)];
 
-        public TileState UpdateState(TileState state) => state.HitsToDestroy - 1 <= 0 ? _states[0] : _states[state.HitsToDestroy - 1];
+        public TileState UpdateState(TileState state) => state.HitsToDestroy - 1 <= 0 ? _states[0] : _states[state.HitsToDestroy-1];
     }
 }

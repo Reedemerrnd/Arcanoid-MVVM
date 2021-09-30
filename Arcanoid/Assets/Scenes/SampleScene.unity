@@ -544,6 +544,27 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5fbc9d29619af69489745835bfbda509, type: 3}
+--- !u!1 &1812176899 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4111507523595127104, guid: 4d7b176b8d715584fab708b01e9c321a, type: 3}
+  m_PrefabInstance: {fileID: 150201849}
+  m_PrefabAsset: {fileID: 0}
+--- !u!58 &1812176902
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1812176899}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 6200000, guid: bad2d3d45cf76804384b827c87b58bbe, type: 2}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.5
 --- !u!1001 &1888579867
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -557,7 +578,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2765886629767555518, guid: 5fbc9d29619af69489745835bfbda509, type: 3}
       propertyPath: m_LocalScale.x
-      value: 4.6456847
+      value: 20.441013
       objectReference: {fileID: 0}
     - target: {fileID: 2765886629767555518, guid: 5fbc9d29619af69489745835bfbda509, type: 3}
       propertyPath: m_LocalScale.y
