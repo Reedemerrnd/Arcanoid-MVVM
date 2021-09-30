@@ -38,17 +38,15 @@ namespace Arcanoid
             var screenMiddleY = (topRightYAbs - Mathf.Abs(_screenBounds.BottomLeft.y)) / 2f;
             _cells = new List<Vector3>(_gameSettings.Collumns * _gameSettings.Rows);
             _cellSize = new Vector3((_screenBounds.TopRight.x - _screenBounds.BottomLeft.x) / _gameSettings.Collumns, (topRightYAbs - screenMiddleY) / _gameSettings.Rows, 1f);
-            var cellPosition = new Vector2(_screenBounds.BottomLeft.x, screenMiddleY);
-            while (cellPosition.y + _cellSize.y <= _screenBounds.TopRight.y + 0.1f)
+            var cellCenter = new Vector3(_screenBounds.BottomLeft.x + (_cellSize.x / 2), screenMiddleY + (_cellSize.y / 2), 0f);
+            for (int i = 0; i < _gameSettings.Rows; i++)
             {
-                cellPosition.x = _screenBounds.BottomLeft.x;
-                while (cellPosition.x + _cellSize.x <= _screenBounds.TopRight.x + 0.1f)
+                for (int j = 0; j < _gameSettings.Collumns; j++)
                 {
-                    var center = new Vector2(cellPosition.x + (_cellSize.x / 2), cellPosition.y + (_cellSize.y / 2));
-                    _cells.Add(center);
-                    cellPosition.x += _cellSize.x;
+                    _cells.Add(cellCenter);
+                    cellCenter.x += _cellSize.x;
                 }
-                cellPosition.y += _cellSize.y;
+                cellCenter.y += _cellSize.y;
             }
         }
 
