@@ -3,8 +3,8 @@ using UnityEngine;
 
 namespace Arcanoid
 {
-    public interface ITileFactory
+    public interface ITileFactory<T> where T : BaseTile
     {
-        public BrickTile GetTileAt(Vector3 position, Vector3 scale);
+        public T GetTileAt(Vector3 position, Vector3 scale);
     }
 }

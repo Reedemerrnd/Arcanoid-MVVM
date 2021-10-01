@@ -9,16 +9,17 @@ namespace Arcanoid
     {
         private readonly IScreenBounds _screenBounds;
         private readonly GameSettings _gameSettings;
-        private readonly ITileFactory _tileFactory;
-
+        private readonly ITileFactory<BrickTile> _tileFactory;
+        private readonly ITileFactory<BoardTile> _player;
         private List<Vector3> _cells;
         private Vector2 _cellSize;
 
-        public BoardBuilder(IScreenBounds screenBounds, GameSettings gameSettings, ITileFactory tileFactory)
+        public BoardBuilder(IScreenBounds screenBounds, GameSettings gameSettings, ITileFactory<BrickTile> tileFactory, ITileFactory<BoardTile> player)
         {
             _screenBounds = screenBounds;
             _gameSettings = gameSettings;
             _tileFactory = tileFactory;
+            _player = player;
         }
 
 
