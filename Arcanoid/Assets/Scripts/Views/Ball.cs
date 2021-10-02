@@ -8,7 +8,7 @@ namespace Arcanoid.Views
         private Rigidbody2D _rigidbody;
         private bool _isLaunched;
         private IMovementViewModel _movement;
-        private Collider2D _collider;
+        private CircleCollider2D _collider;
 
         public void Construct(IInputViewModel input, IMovementViewModel movementViewModel)
         {
@@ -20,7 +20,7 @@ namespace Arcanoid.Views
         private void Awake()
         {
             _rigidbody = GetComponent<Rigidbody2D>();
-            _collider = GetComponent<Collider2D>();
+            _collider = GetComponent<CircleCollider2D>();
         }
 
 
