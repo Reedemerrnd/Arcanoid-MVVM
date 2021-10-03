@@ -14,6 +14,7 @@ namespace Arcanoid.Views
             _rigidbody = GetComponent<Rigidbody2D>();
             _input = inputViewModel;
             _movement = movement;
+            _rigidbody.isKinematic = false;
         }
 
         private void FixedUpdate()
