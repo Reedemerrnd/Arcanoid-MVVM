@@ -10,6 +10,7 @@ namespace Arcanoid
         private readonly IMovementViewModel _movementViewModel;
         private readonly IMovementViewModel _ballMovement;
         private Ball _ball;
+        private BoardTile _playerBoard;
 
         public BoardFactory(GameSettings gameSettings, IInputViewModel inputViewModel, IMovementViewModel movementViewModel, IMovementViewModel ballMovement) : base(gameSettings)
         {
@@ -21,21 +22,23 @@ namespace Arcanoid
         public override BoardTile GetTileAt(Vector3 position, Vector3 scale)
         {
             var tile = Object.Instantiate(_gameSettings.TilePrefab, position, Quaternion.identity);
-            var bricktile = tile.AddComponent<BoardTile>();
-            bricktile.Construct(_inputViewModel, _movementViewModel);
-            bricktile.SetScale(scale);
+            _playerBoard = tile.AddComponent<BoardTile>();
+            _playerBoard.Construct(_inputViewModel, _movementViewModel);
+            _playerBoard.SetScale(scale);
             GetBall();
-            _ball.Stick(tile);
-            return bricktile;
+            _ball.StickTo(tile);
+            return _playerBoard;
         }
 
-        private Ball GetBall()
+        public BoardTile GetBoard() => _playerBoard;
+
+        public Ball GetBall()
         {
             if (_ball == null)
             {
                 _ball = Object.Instantiate(_gameSettings.BallPrefab, Vector3.zero, Quaternion.identity).GetComponent<Ball>();
+                _ball.Construct(_inputViewModel, _ballMovement);
             }
-            _ball.Construct(_inputViewModel, _ballMovement);
             return _ball;
         }
     }

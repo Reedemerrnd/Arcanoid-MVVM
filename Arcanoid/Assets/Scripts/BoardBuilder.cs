@@ -38,13 +38,13 @@ namespace Arcanoid
         {
             var boarPosition = GetBoardSpawnPoint();
             var boardScale = new Vector3(_gameSettings.BoardWidth, 0.3f, 1f);
-            var board = _player.GetTileAt(boarPosition, boardScale);
+            _player.GetTileAt(boarPosition, boardScale);
         }
 
         private Vector3 GetBoardSpawnPoint()
         {
             var x = (Mathf.Abs(_screenBounds.TopRight.x) - Mathf.Abs(_screenBounds.BottomLeft.x))/2;
-            var y = _screenBounds.BottomLeft.y + 1f; // magick number
+            var y = _screenBounds.BottomLeft.y + 0.3f; // magic number
             return new Vector3(x, y, 0f);
         }
 

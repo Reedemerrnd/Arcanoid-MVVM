@@ -15,6 +15,7 @@ namespace Arcanoid
             var screenBounds = new ScreenBounds(Camera.main);
             
             var input = FindObjectOfType<PCInput>();
+            var gameOverTrigger = FindObjectOfType<GameOverTrigger>();
 
             var boardSpeedModel = new SpeedModel(settings.BoardSpeed);
             var ballSpeedModel = new SpeedModel(settings.BallSpeed);
@@ -32,7 +33,10 @@ namespace Arcanoid
             var boardFiller = new BoardBuilder(screenBounds, settings, tileFactory, playerFactory);
             boardFiller.FillBoard();
 
+            var gameOverViewModel = new GameOverViewModel(playerFactory.GetBall(), playerFactory.GetBoard());
+
             input.Construct(inputVM);
+            gameOverTrigger.Construct(gameOverViewModel);
         }
 
     }
